@@ -1,73 +1,13 @@
-version: 2
-
-defaults: &defaults
-  working_directory: ~/keepkey
-  docker:
-    - image: circleci/node
-
-jobs:
-  build:
-    <<: *defaults  
-    steps:
-      - checkout
-
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
-
-      - run: yarn install
-      - run:
-          name: Run build
-          command: yarn build
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      - persist_to_workspace:
-          root: ~/keepkey
-          paths: .
-  test:
-    <<: *defaults
-    steps:
-      - checkout
-
-      - run: yarn install
-      - run:
-          name: Run test
-          command: yarn test
-  deploy:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/keepkey
-      - run:
-          name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/keepkey/.npmrc
-      - run:
-          name: Publish package
-          command: npm publish
-      - run:
-          name: Deploy docs
-          command: yarn deploy-docs
-            
+# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+# Use a package of configuration called an orb.
+orbs:
+  # Declare a dependency on the welcome-orb
+  welcome: circleci/welcome-orb@0.4.1
+# Orchestrate or schedule a set of jobs
 workflows:
-  version: 2
-  build-and-deploy:
+  # Name the workflow "welcome"
+  welcome:
+    # Run the welcome/run job in its own container
     jobs:
-      - build:
-          filters:
-            tags:
-              only: /^v.*/
-      - test
-      - deploy:
-          requires:
-            - build
-            - test
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
+      - welcome/run
