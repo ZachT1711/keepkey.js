@@ -107,7 +107,7 @@
     "marked": "0.6.1",
     "p-queue": "^3.0.0",
     "protobufjs": "^6.8.8",
-    "rxjs": "^6.3.3"
+    "rxjs": "^6.5.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.1.2",
