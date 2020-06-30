@@ -106,7 +106,7 @@
     "js-yaml": "3.13.1",
     "marked": "0.6.1",
     "p-queue": "^3.0.0",
-    "protobufjs": "^6.8.8",
+    "protobufjs": "^6.9.0",
     "rxjs": "^6.3.3"
   },
   "devDependencies": {
