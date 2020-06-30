@@ -104,7 +104,7 @@
     "google-protobuf": "^3.6.1",
     "handlebars": "4.1.0",
     "js-yaml": "3.13.1",
-    "marked": "0.6.1",
+    "marked": "0.8.2",
     "p-queue": "^3.0.0",
     "protobufjs": "^6.8.8",
     "rxjs": "^6.3.3"
