@@ -97,7 +97,7 @@
     ]
   },
   "dependencies": {
-    "bl": "0.9.5",
+    "bl": "1.2.3",
     "bytebuffer": "git+https://git@github.com/spiceboi/bytebuffer.js.git",
     "device-protocol": "git+https://git@github.com/KeepKey/device-protocol.git#188c3a8edfaea6212e4260a133d539eb43dae00e",
     "eventemitter2": "^5.0.1",
